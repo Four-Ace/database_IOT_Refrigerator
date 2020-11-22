@@ -6,7 +6,7 @@ This is for Database project in 2020-11-22.
 
 Concept is about IOT Refrigerator.  There are four Schema, and one Relation Schema. 
 
-![image-20201122173453298](C:\Users\skajt\AppData\Roaming\Typora\typora-user-images\image-20201122173453298.png)
+![](https://user-images.githubusercontent.com/59431088/99900738-b24d8800-2cf4-11eb-8713-624e39031979.PNG)
 
 You can login with your password, you can have two option.
 
