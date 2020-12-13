@@ -1,5 +1,7 @@
 # database_IOT_Refrigerator
 
+test.py를 실행한 후, templates 폴더에서 start_page.html을 실행하세요
+
 This is for Database project in 2020-11-22.
 
 

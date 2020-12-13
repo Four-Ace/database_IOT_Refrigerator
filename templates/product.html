@@ -1,8 +1,9 @@
 <!doctype HTML>
 <html>
     <body>
-        <h1>Product</h1>
+        <h1>Product</h1> 
         {% for item in items %}
+        <p>PSID : {{ item.PSID }} <br></p>
         <p>PNAME : {{ item.PNAME }} <br></p>
         <p>PRICE : {{ item.PRICE }} <br>
         <p>PDATE : {{ item.PDATE }} <br><br></p>

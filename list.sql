@@ -6,9 +6,9 @@ insert into "REFRIGERATOR" values(444,444,"경기도 광명시 광명7동 325-81
 insert into "REFRIGERATOR" values(555,555,"경기도 화성시 동탄면 중리 76",1);
 insert into "REFRIGERATOR" values(666,666,"서울특별시 동대문구 용두동 238-115",1);
 
-insert into "SUPPLIER" values(011,1,2000,"MEAT");
-insert into "SUPPLIER" values(022,2,500,"G_MARKET");
-insert into "SUPPLIER" values(033,3,0,"C_PANG");
+insert into "SUPPLIER" values(11,1,2000,"MEAT");
+insert into "SUPPLIER" values(22,2,500,"G_MARKET");
+insert into "SUPPLIER" values(33,3,0,"C_PANG");
 
 insert into "PRODUCT" values(1,11,"살라미 햄",3000,14);
 insert into "PRODUCT" values(2,11,"수제 햄",5000,14);
