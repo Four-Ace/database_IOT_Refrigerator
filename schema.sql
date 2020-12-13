@@ -7,7 +7,7 @@ drop table if exists DILIVER;
 
 Create Table REFRIGERATOR
     (RID			INTEGER PRIMARY KEY AUTOINCREMENT, 	
-	 RPW			INTEGER			NOT NULL,
+	 RPW			INTEGER,
      ADRESS			VARCHAR(250),
      AGREE 			INTEGER 		DEFAULT 0
     );
