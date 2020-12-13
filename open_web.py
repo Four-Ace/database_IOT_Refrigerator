@@ -10,9 +10,7 @@ def showlist():
     items = db.execute(
         'select RID, RPW, ADRESS, AGREE from REFRIGERATOR'
     ).fetchall()
-
-    db.close()
-    return render_template('menu.html',items=items)
+    return render_template('ref.html',items=items)
 
 if __name__ == '__main__':
     app.debug=True
