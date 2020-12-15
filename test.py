@@ -1,4 +1,4 @@
-from flask import Flask, redirect, url_for, request, render_template
+from flask import Flask, redirect, url_for, request, render_template, g
 import sqlite3
 
 app = Flask(__name__)
@@ -7,23 +7,32 @@ conn = sqlite3.connect('list.db')
 print ("Opened database successfully")
 conn.close()
 
-#연습 - 장보기 목록 만들기
-@app.route('/shopping')
-def shopping():
-    #데이터베이스에서 데이터를 가져 온다. 
-    con = sqlite3.connect("list.db")
-    con.row_factory = sqlite3.Row
-    cur = con.cursor()
-    cur.execute("select * from shopping")
-    rows = cur.fetchall()
-    print("DB:")
-    print(rows)
-    return render_template('shoppinglist.html', rows = rows)
+def connect_db():
+    sql = sqlite3.connect('list.db')
+    sql.row_factory = sqlite3.Row
+    return sql
 
-@app.route('/success/<name>')
-def success(name):
-   return 'welcome %s' % name
-   
+def get_db():
+    if not hasattr(g,'sqlite3'):
+        g.sqlite3_db = connect_db()
+    return g.sqlite3_db
+
+# 데이터베이스에서 ID와 PW를 열람하고 일치하는지 확인
+def match_ID(_SID,_SPW):
+    db = get_db()
+    cursor = db.execute('SELECT SID,SPW FROM SUPPLIER WHERE SID =' + _SID)
+    results = cursor.fetchall()
+
+    if(int(results[0]['SPW']) == int(_SPW)):
+        return 1
+    else:
+        return 0    
+
+@app.teardown_appcontext
+def close_de(error):
+    if hasattr(g,'sqlite_db'):
+        g.sqlite_db.close()
+
 @app.route('/fail/<name>')
 def fail():
     return render_template('fail_page.html')
@@ -35,28 +44,46 @@ def showlist(user):
         'select PSID,PNAME,PRICE,PDATE from PRODUCT where PSID=' + user
     ).fetchall()
     return render_template('product.html',items=items)
+    db.close()
 
-@app.route('/start_page', methods = ['POST', 'GET'])
+@app.route('/')
+def main_page():
+    return render_template('start_page.html')
+
+@app.route('/Product', methods = ['POST', 'GET'])
 def login():
    if request.method == 'POST':
         user = request.form['myName']
         PW = request.form['myPassword']
 
-        #이름과 패스워드를 일치하는지 데이터 베이스에서 확인 해야함
-        con = sqlite3.connect("list.db")
-        con.row_factory = sqlite3.Row
-        cur = con.cursor()
-        cur.execute("select SID from SUPPLIER where SID=" + user +" AND SPW="+PW)
-        rows = cur.fetchall()
-        print("DB:")
-        print(rows)
-
-        if (user == "11") and (PW == "1"):
+        if (match_ID(user,PW) == 1):
             return showlist(user)
         else:
             return fail()
    else:
       user = request.args.get('myName')
+      return redirect(url_for('success', name = user))
+
+@app.route('/product', methods = ['POST', 'GET'])
+def add_in_db():
+    if request.method == 'POST':
+        PID = request.form['_PID']
+        PSID = request.form['_PSID']
+        PNAME = request.form['_PNAME']
+        PRICE = request.form['_PRICE']
+        PDATE = request.form['_PDATE']
+        user = PID
+
+        conn = sqlite3.connect('list.db')
+        cur = conn.cursor()
+        cur.execute("INSERT INTO PRODUCT (PID,PSID,PNAME,PRICE,PDATE) VALUES (?,?,?,?,?)",(PID,PSID,PNAME,PRICE,PDATE) )
+        conn.commit()
+        print ("Post database successfully")
+
+        return showlist(user)
+    
+    else:
+      user = request.args.get('PID')
       return redirect(url_for('success', name = user))
 
 if __name__ == '__main__':

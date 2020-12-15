@@ -1,11 +1,4 @@
 BEGIN TRANSACTION;
-insert into "REFRIGERATOR" values(111,111,"인천광역시 연수구 송도동 12-8",1);
-insert into "REFRIGERATOR" values(222,222,"서울특별시 강남구 역삼동 36-12",1);
-insert into "REFRIGERATOR" values(333,333,"인천광역시 연수구 연수동 22-6",1);
-insert into "REFRIGERATOR" values(444,444,"경기도 광명시 광명7동 325-81",1);
-insert into "REFRIGERATOR" values(555,555,"경기도 화성시 동탄면 중리 76",1);
-insert into "REFRIGERATOR" values(666,666,"서울특별시 동대문구 용두동 238-115",1);
-
 insert into "SUPPLIER" values(11,1,2000,"MEAT");
 insert into "SUPPLIER" values(22,2,500,"G_MARKET");
 insert into "SUPPLIER" values(33,3,0,"C_PANG");

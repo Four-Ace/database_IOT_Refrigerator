@@ -1,12 +1,22 @@
 <!doctype HTML>
 <html>
     <body>
-        <h1>Product</h1> 
+        <form action = "http://localhost:5000/product" method = "post">
+            <h1>Product Page</h1>
+            <p>You can add your products.</p> 
+            <p><input placeholder="PID" type = "number" name = "_PID" />
+               <input placeholder="PSID" type = "number" name = "_PSID" />
+               <input placeholder="PNAME" type = "text" name = "_PNAME"/>
+               <input placeholder="PRICE" type = "number" name = "_PRICE"/>
+               <input placeholder="PDATE" type = "number" name = "_PDATE"/></p>
+            <p><input type = "submit" value = "Add" /></p>
+        </form>
+    </body>
+    <h2><br><br>List of Products</h2>
+    <body>
+        <p>PID PNAME PRICE PDATE</p> 
         {% for item in items %}
-        <p>PSID : {{ item.PSID }} <br></p>
-        <p>PNAME : {{ item.PNAME }} <br></p>
-        <p>PRICE : {{ item.PRICE }} <br>
-        <p>PDATE : {{ item.PDATE }} <br><br></p>
+        <p>{{ item.PID }} {{ item.PNAME }} {{ item.PRICE }} {{ item.PDATE }} </p>
         {% endfor %}
     </body>
 </html> 
