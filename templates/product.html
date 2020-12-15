@@ -5,7 +5,6 @@
             <h1>Product Page</h1>
             <p>You can add your products.</p> 
             <p><input placeholder="PID" type = "number" name = "_PID" />
-               <input placeholder="PSID" type = "number" name = "_PSID" />
                <input placeholder="PNAME" type = "text" name = "_PNAME"/>
                <input placeholder="PRICE" type = "number" name = "_PRICE"/>
                <input placeholder="PDATE" type = "number" name = "_PDATE"/></p>
@@ -14,7 +13,7 @@
     </body>
     <h2><br><br>List of Products</h2>
     <body>
-        <p>PID PNAME PRICE PDATE</p> 
+        <p>PSID PNAME PRICE PDATE</p> 
         {% for item in items %}
         <p>{{ item.PID }} {{ item.PNAME }} {{ item.PRICE }} {{ item.PDATE }} </p>
         {% endfor %}
